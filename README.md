@@ -1,4 +1,4 @@
-# NameCase
+# PGB NameCase
 Utility for properly casing a name.
 
 #### Thanks
