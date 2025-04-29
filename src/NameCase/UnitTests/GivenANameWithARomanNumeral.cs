@@ -1,4 +1,4 @@
-﻿using NameCase;
+﻿using PgbNameCase;
 
 namespace UnitTests.NameCaseFormatterShould;
 

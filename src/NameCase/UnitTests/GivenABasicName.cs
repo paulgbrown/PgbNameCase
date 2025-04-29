@@ -1,4 +1,4 @@
-using NameCase;
+using PgbNameCase;
 
 namespace UnitTests.NameCaseFormatterShould;
 
@@ -16,6 +16,7 @@ public class GivenABasicName
 	[InlineData("Mack Knife")]
 	[InlineData("Dougal MacDonald")]
 	[InlineData("Yusof bin Ishak")]
+	[InlineData("Mr & Mrs J David McFadden")]
 	public void CorrectlyFormatAName(string expectedName)
 	{
 		var nameToBeFormatted = expectedName.ToLower();

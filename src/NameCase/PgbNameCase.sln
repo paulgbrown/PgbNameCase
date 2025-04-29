@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameCase", "NameCase\NameCase.csproj", "{7B2C0604-9DA4-42A9-AF2E-20DF44B1577E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PgbNameCase", "NameCase\PgbNameCase.csproj", "{7B2C0604-9DA4-42A9-AF2E-20DF44B1577E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{67BF92B1-1C2E-442E-B2D0-8764CA1FDD9E}"
 EndProject

@@ -1,4 +1,4 @@
-﻿using NameCase;
+﻿using PgbNameCase;
 using System.Globalization;
 
 namespace UnitTests.IrishFormatterShould;

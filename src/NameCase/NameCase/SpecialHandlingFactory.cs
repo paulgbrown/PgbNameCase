@@ -1,4 +1,4 @@
-﻿namespace NameCase;
+﻿namespace PgbNameCase;
 
 internal class SpecialHandlingFactory
 {
