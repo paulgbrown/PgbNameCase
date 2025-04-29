@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NameCase\NameCase.csproj" />
+    <ProjectReference Include="..\NameCase\PgbNameCase.csproj" />
   </ItemGroup>
 
   <ItemGroup>

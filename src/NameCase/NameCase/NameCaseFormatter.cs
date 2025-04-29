@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace NameCase;
+namespace PgbNameCase;
 
 public class NameCaseFormatter
 {
