@@ -93,3 +93,16 @@ public class GivenANameWithAParticle()
 		Assert.Equal(expectedName, actualName);
 	}
 }
+
+public class GivenANull()
+{
+	[Fact]
+	public void CorrectlyFormatAName()
+	{
+		string? nameToBeFormatted = null;
+
+		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
+
+		Assert.Null(actualName);
+	}
+}

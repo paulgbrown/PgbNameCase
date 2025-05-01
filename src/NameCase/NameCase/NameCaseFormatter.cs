@@ -4,8 +4,10 @@ namespace PgbNameCase;
 
 public class NameCaseFormatter
 {
-	public static string Format(string nameToBeFormatted)
+	public static string Format(string? nameToBeFormatted)
 	{
+		if (nameToBeFormatted == null) return null;
+
 		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted);
 
 		var nameAfterParticles = HandleNamesWithParticles(basicName);
