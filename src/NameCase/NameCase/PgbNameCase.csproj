@@ -13,6 +13,7 @@
 		<Copyright>2025 Paul G Brown</Copyright>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
 		<IncludeContentInPack>true</IncludeContentInPack>
+		<PackageVersion>1.0.1</PackageVersion>
 		<PackageProjectUrl>https://github.com/paulgbrown/PgbNameCase</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/paulgbrown/PgbNameCase</RepositoryUrl>
