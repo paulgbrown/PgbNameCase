@@ -5,14 +5,14 @@ on:
     types: [published]
 
 env:
-  PROJECT_PATH: src/NameCase/PgbNameCase.csproj
+  PROJECT_PATH: src/NameCase/NameCase/PgbNameCase.csproj
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_SOURCE_URL: "'https://nuget.org/'"
 
 jobs:
   publish:
     name: "Publish to NuGet Gallery"
-    runs-on: "windows-latest"
+    runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
