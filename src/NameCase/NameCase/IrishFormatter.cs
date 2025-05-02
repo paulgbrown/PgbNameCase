@@ -11,6 +11,8 @@ internal class IrishFormatter
 
 		if (nameToBeFormatted.StartsWith("Mac"))
 		{
+			if (nameToBeFormatted.Length <= 5) return nameToBeFormatted;
+
 			var macSpecials = SpecialHandlingFactory.GetMacSpecials();
 			if (!macSpecials.Contains(nameToBeFormatted))
 			{
