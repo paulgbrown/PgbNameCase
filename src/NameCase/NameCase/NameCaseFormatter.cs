@@ -4,8 +4,9 @@ namespace PgbNameCase;
 
 public class NameCaseFormatter
 {
-	public static string Format(string? nameToBeFormatted)
+	public static string? Format(string nameToBeFormatted)
 	{
+		// If the string is null, just return a null.
 		if (nameToBeFormatted == null) return null;
 
 		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted);
