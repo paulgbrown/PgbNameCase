@@ -97,7 +97,17 @@ public class GivenANameWithAParticle()
 public class GivenANull()
 {
 	[Fact]
-	public void CorrectlyFormatAName()
+	public void CorrectlyFormatAString()
+	{
+		string nameToBeFormatted = null;
+
+		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
+
+		Assert.Null(actualName);
+	}
+
+	[Fact]
+	public void CorrectlyFormatANullableString()
 	{
 		string? nameToBeFormatted = null;
 
