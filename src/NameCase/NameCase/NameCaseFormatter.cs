@@ -11,7 +11,7 @@ public class NameCaseFormatter
 
 		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted);
 
-		var nameAfterParticles = HandleNamesWithParticles(basicName);
+		var nameAfterParticles = ParticleFormatter.Format(basicName);
 
 		var nameParts = nameAfterParticles.Split(' ');
 

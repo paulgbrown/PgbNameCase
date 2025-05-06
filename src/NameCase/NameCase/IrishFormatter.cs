@@ -4,28 +4,43 @@ internal class IrishFormatter
 {
 	internal static string Format(string nameToBeFormatted)
 	{
+		var position = 0;
+		var specials = new List<string>();
+
 		if (nameToBeFormatted.StartsWith("O'"))
 		{
-			nameToBeFormatted = UpperSpecificPosition(nameToBeFormatted, 2);
+			position = 2;
 		}
 
 		if (nameToBeFormatted.StartsWith("Mac"))
 		{
 			if (nameToBeFormatted.Length <= 5) return nameToBeFormatted;
 
-			var macSpecials = SpecialHandlingFactory.GetMacSpecials();
-			if (!macSpecials.Contains(nameToBeFormatted))
-			{
-				nameToBeFormatted = UpperSpecificPosition(nameToBeFormatted, 3);
-			}
+			specials = SpecialHandlingFactory.GetMacSpecials();
+			position = 3;
 		}
 
 		if (nameToBeFormatted.StartsWith("Mc"))
 		{
-			var macSpecials = SpecialHandlingFactory.GetMcSpecials();
-			if (!macSpecials.Contains(nameToBeFormatted))
+			specials = SpecialHandlingFactory.GetMcSpecials();
+			position = 2;
+		}
+
+		if (nameToBeFormatted.StartsWith("Mac'"))
+		{
+			position = 4;
+		}
+
+		if (nameToBeFormatted.StartsWith("Mc'"))
+		{
+			position = 3;
+		}
+
+		if (position > 0)
+		{
+			if (!specials.Contains(nameToBeFormatted))
 			{
-				nameToBeFormatted = UpperSpecificPosition(nameToBeFormatted, 2);
+				nameToBeFormatted = UpperSpecificPosition(nameToBeFormatted, position);
 			}
 		}
 

@@ -5,6 +5,7 @@ internal class SpecialHandlingFactory
 	private readonly static List<string> _McSpecials;
 	private readonly static List<string> _MacSpecials;
 	private readonly static List<string> _Particles;
+	private readonly static Dictionary<string, string> _ParticleNames;
 	private readonly static List<string> _TwoLetterNames;
 
 	static SpecialHandlingFactory()
@@ -32,11 +33,13 @@ internal class SpecialHandlingFactory
 			"Machan",
 			"Machar",
 			"Machart",
+			"Machell",
 			"Machemer",
 			"Machen",
 			"Macher",
 			"Machia",
 			"Machida",
+			"Machiel",
 			"Machin",
 			"Machlin",
 			"Machnicki",
@@ -53,6 +56,7 @@ internal class SpecialHandlingFactory
 			"Maciel",
 			"Macina",
 			"Macioce",
+			"Maciol",
 			"Maciolek",
 			"Maciulis",
 			"Mack",
@@ -105,6 +109,14 @@ internal class SpecialHandlingFactory
 			" El "
 		};
 
+		_ParticleNames = new Dictionary<string, string>()
+		{
+			{ "derosa", "DeRosa" },
+			{ "dewitt", "DeWitt" },
+			{ "larosa", "LaRosa" },
+			{ "larue", "LaRue" }
+		};
+
 		_TwoLetterNames = new List<string>() {
 			"AJ",
 			"BJ",
@@ -126,6 +138,11 @@ internal class SpecialHandlingFactory
 	internal static List<string> GetParticles()
 	{
 		return _Particles;
+	}
+
+	internal static Dictionary<string, string> GetParticleNames()
+	{
+		return _ParticleNames;
 	}
 
 	internal static List<string> GetTwoLetterNames()

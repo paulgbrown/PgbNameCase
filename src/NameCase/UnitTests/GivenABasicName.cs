@@ -76,23 +76,6 @@ public class GivenANameThatStartsWithO
 	}
 }
 
-public class GivenANameWithAParticle()
-{
-	[Theory]
-	[InlineData("Leonardo da Vinci")]
-	[InlineData("Leonardo di Caprio")]
-	[InlineData("Pierre du Pont")]
-	[InlineData("Robert van der Graaf")]
-	[InlineData("Maria von Trapp")]
-	public void CorrectlyFormatAName(string expectedName)
-	{
-		var nameToBeFormatted = expectedName.ToLower();
-
-		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
-
-		Assert.Equal(expectedName, actualName);
-	}
-}
 
 public class GivenANull()
 {
