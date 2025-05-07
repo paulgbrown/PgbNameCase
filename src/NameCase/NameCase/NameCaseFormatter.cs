@@ -9,15 +9,15 @@ public class NameCaseFormatter
 		// If the string is null, just return a null.
 		if (nameToBeFormatted == null) return null;
 
-		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted);
+		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted.ToLower());
 
-		var nameAfterParticles = HandleNamesWithParticles(basicName);
+		var nameAfterParticles = ParticleFormatter.Format(basicName);
 
 		var nameParts = nameAfterParticles.Split(' ');
 
 		for (int i = 0; i < nameParts.Length; i++)
 		{
-			nameParts[i] = IrishFormatter.Format(nameParts[i]);
+			nameParts[i] = StartsWithFormatter.Format(nameParts[i]);
 
 			nameParts[i] = HandleTwoLetterNames(nameParts[i]);
 

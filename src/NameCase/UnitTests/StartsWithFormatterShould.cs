@@ -1,7 +1,7 @@
 ﻿using PgbNameCase;
 using System.Globalization;
 
-namespace UnitTests.IrishFormatterShould;
+namespace UnitTests.StartsWithFormatterShould;
 
 public class GivenAMcName
 {
@@ -37,7 +37,7 @@ public class GivenAMcName
 	{
 		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
 
-		var actualName = IrishFormatter.Format(nameToBeFormatted);
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
 	}
@@ -126,7 +126,7 @@ public class GivenAMacName
 	{
 		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
 
-		var actualName = IrishFormatter.Format(nameToBeFormatted);
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
 	}
@@ -142,6 +142,7 @@ public class GivenAMacName
 	[InlineData("Macchio")]
 	[InlineData("Macchione")]
 	[InlineData("Maccini")]
+	[InlineData("Macomber")]
 	[InlineData("Macedo")]
 	[InlineData("Macera")]
 	[InlineData("Macevicius")]
@@ -154,11 +155,13 @@ public class GivenAMacName
 	[InlineData("Machan")]
 	[InlineData("Machar")]
 	[InlineData("Machart")]
+	[InlineData("Machell")]
 	[InlineData("Machemer")]
 	[InlineData("Machen")]
 	[InlineData("Macher")]
 	[InlineData("Machia")]
 	[InlineData("Machida")]
+	[InlineData("Machiel")]
 	[InlineData("Machin")]
 	[InlineData("Machlin")]
 	[InlineData("Machnicki")]
@@ -173,15 +176,17 @@ public class GivenAMacName
 	[InlineData("Maciej")]
 	[InlineData("Maciejewski")]
 	[InlineData("Maciel")]
+	[InlineData("Maciol")]
 	[InlineData("Macina")]
 	[InlineData("Macioce")]
 	[InlineData("Maciolek")]
+	//[InlineData("Macisaac")]
 	[InlineData("Maciulis")]
 	[InlineData("MacMillan")]
-	[InlineData("Mack")]
 	[InlineData("Mackall")]
 	[InlineData("Mackel")]
 	[InlineData("Mackell")]
+	[InlineData("Macklem")]
 	[InlineData("Macken")]
 	[InlineData("Mackenthun")]
 	[InlineData("Macker")]
@@ -213,27 +218,36 @@ public class GivenAMacName
 	{
 		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
 
-		var actualName = IrishFormatter.Format(nameToBeFormatted);
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
 	}
 
 	[Theory]
+	[InlineData("Mack")]
 	[InlineData("Macy")]
+	[InlineData("Macda")]
+	[InlineData("Macin")]
 	[InlineData("Macri")]
 	public void NotCapitalizeNamesOfFiveOrLess(string expectedName)
 	{
 		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
 
-		var actualName = IrishFormatter.Format(nameToBeFormatted);
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
 	}
 }
 
-public class GivenAnOName
+public class GivenANameWithAnApostrophe
 {
 	[Theory]
+	[InlineData("D'Amico")]
+	[InlineData("D'Angelo")]
+	[InlineData("D'Arcy")]
+	[InlineData("D'Eufemio")]
+	[InlineData("L'Oreal")]
+	[InlineData("M'Barek")]
 	[InlineData("O'Loughlin")]
 	[InlineData("Ohanian")]
 	[InlineData("Ortiz")]
@@ -274,7 +288,23 @@ public class GivenAnOName
 	{
 		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
 
-		var actualName = IrishFormatter.Format(nameToBeFormatted);
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
+
+		Assert.Equal(expectedName, actualName);
+	}
+}
+
+public class GivenAnNameWithAnApostrophe
+{
+	[Theory]
+	[InlineData("Mc'Arthur")]
+	[InlineData("Mac'Holmes")]
+	[InlineData("Mac'Laren")]
+	public void CorrectlyFormatAMcName(string expectedName)
+	{
+		var nameToBeFormatted = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(expectedName);
+
+		var actualName = StartsWithFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
 	}
