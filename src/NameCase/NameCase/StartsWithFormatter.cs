@@ -1,13 +1,13 @@
 ﻿namespace PgbNameCase;
 
-internal class IrishFormatter
+internal class StartsWithFormatter
 {
 	internal static string Format(string nameToBeFormatted)
 	{
 		var position = 0;
 		var specials = new List<string>();
 
-		if (nameToBeFormatted.StartsWith("O'"))
+		if (nameToBeFormatted.Length > 1 && nameToBeFormatted.Substring(1, 1) == "'")
 		{
 			position = 2;
 		}
@@ -22,6 +22,8 @@ internal class IrishFormatter
 
 		if (nameToBeFormatted.StartsWith("Mc"))
 		{
+			if (nameToBeFormatted.Length <= 4) return nameToBeFormatted;
+
 			specials = SpecialHandlingFactory.GetMcSpecials();
 			position = 2;
 		}
@@ -33,6 +35,7 @@ internal class IrishFormatter
 
 		if (nameToBeFormatted.StartsWith("Mc'"))
 		{
+			if (nameToBeFormatted.Length <= 5) return nameToBeFormatted;
 			position = 3;
 		}
 

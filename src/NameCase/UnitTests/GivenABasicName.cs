@@ -17,9 +17,22 @@ public class GivenABasicName
 	[InlineData("Dougal MacDonald")]
 	[InlineData("Yusof bin Ishak")]
 	[InlineData("Mr & Mrs J David McFadden")]
+	[InlineData("John Mc")]
+	[InlineData("John Mac")]
 	public void CorrectlyFormatAName(string expectedName)
 	{
 		var nameToBeFormatted = expectedName.ToLower();
+
+		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
+
+		Assert.Equal(expectedName, actualName);
+	}
+
+	[Fact]	
+	public void CorrectlyFormatANameWithAllCaps()
+	{
+		var expectedName = "George A. Romero";
+		var nameToBeFormatted = "George A. ROMERO"; ;
 
 		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
 
