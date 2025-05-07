@@ -34,4 +34,13 @@ public class GivenANameWithAParticle
 
 		Assert.Equal(expectedName, actualName);
 	}
+
+	[Theory]
+	[InlineData("John ROMERO", "John Romero")]
+	public void CorrectlyFormatOddCaseNames(string nameToBeFormatted, string expectedName)
+	{
+		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
+
+		Assert.Equal(expectedName, actualName);
+	}
 }

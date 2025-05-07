@@ -28,12 +28,11 @@ public class GivenABasicName
 		Assert.Equal(expectedName, actualName);
 	}
 
-	[Fact]	
-	public void CorrectlyFormatANameWithAllCaps()
+	[Theory]
+	[InlineData("ROMERO", "Romero")]
+	[InlineData("George A. ROMERO", "George A. Romero")]
+	public void CorrectlyFormatNamesWithOddCaps(string nameToBeFormatted, string expectedName)
 	{
-		var expectedName = "George A. Romero";
-		var nameToBeFormatted = "George A. ROMERO"; ;
-
 		var actualName = NameCaseFormatter.Format(nameToBeFormatted);
 
 		Assert.Equal(expectedName, actualName);
