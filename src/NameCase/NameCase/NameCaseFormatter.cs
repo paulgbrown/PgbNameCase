@@ -11,12 +11,14 @@ public class NameCaseFormatter
 
 		var basicName = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(nameToBeFormatted.ToLower());
 
-		var nameAfterParticles = ParticleFormatter.Format(basicName);
+		var nameAfterParticles = ParticleFormatter.FormatParticles(basicName);
 
 		var nameParts = nameAfterParticles.Split(' ');
 
 		for (int i = 0; i < nameParts.Length; i++)
 		{
+			nameParts[i] = ParticleFormatter.FormatParticleNames(nameParts[i]);
+
 			nameParts[i] = StartsWithFormatter.Format(nameParts[i]);
 
 			nameParts[i] = HandleTwoLetterNames(nameParts[i]);

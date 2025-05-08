@@ -8,7 +8,21 @@ namespace PgbNameCase;
 
 internal class ParticleFormatter
 {
-	internal static string Format(string basicName)
+	internal static string FormatParticles(string basicName)
+	{
+		var particleSpecials = SpecialHandlingFactory.GetParticles();
+		foreach (var particleSpecial in particleSpecials.OrderByDescending(x => x.Length))
+		{
+			if (basicName.Contains(particleSpecial))
+			{
+				basicName = basicName.Replace(particleSpecial, particleSpecial.ToLower());
+			}
+		}
+
+		return basicName;
+	}
+
+	internal static string FormatParticleNames(string basicName)
 	{
 		var particleNames = SpecialHandlingFactory.GetParticleNames();
 
@@ -17,15 +31,6 @@ internal class ParticleFormatter
 		if (!string.IsNullOrEmpty(value))
 		{
 			return value;
-		}
-
-		var particleSpecials = SpecialHandlingFactory.GetParticles();
-		foreach (var particleSpecial in particleSpecials.OrderByDescending(x => x.Length))
-		{
-			if (basicName.Contains(particleSpecial))
-			{
-				basicName = basicName.Replace(particleSpecial, particleSpecial.ToLower());
-			}
 		}
 
 		return basicName;
