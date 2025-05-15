@@ -1,10 +1,17 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace PgbNameCase;
 
 public class NameCaseFormatter
 {
 	public static string? Format(string nameToBeFormatted)
+	{
+		var formattedNames = FormattedNameFactory.GetNames();
+		return Format(nameToBeFormatted, formattedNames);
+	}
+
+	public static string? Format(string nameToBeFormatted, IReadOnlySet<string> formattedNames)
 	{
 		// If the string is null, just return a null.
 		if (nameToBeFormatted == null) return null;
@@ -13,34 +20,48 @@ public class NameCaseFormatter
 
 		var nameAfterParticles = ParticleFormatter.FormatParticles(basicName);
 
+		if(nameAfterParticles.Contains("'"))
+		{
+			nameAfterParticles = FormatNameWithAnApostrophe(nameAfterParticles);
+		}
+
 		var nameParts = nameAfterParticles.Split(' ');
 
 		for (int i = 0; i < nameParts.Length; i++)
 		{
-			nameParts[i] = ParticleFormatter.FormatParticleNames(nameParts[i]);
+			string? formattedName = formattedNames.FirstOrDefault(w => w.Equals(nameParts[i], StringComparison.OrdinalIgnoreCase));
 
-			nameParts[i] = StartsWithFormatter.Format(nameParts[i]);
+			if (formattedName != null)
+			{
+				nameParts[i] = formattedName;
+			}
+			else
+			{
+				nameParts[i] = StartsWithFormatter.Format(nameParts[i]);
 
-			nameParts[i] = HandleTwoLetterNames(nameParts[i]);
-
-			nameParts[i] = HandleRomanNumerals(nameParts[i]);
+     			//nameParts[i] = HandleRomanNumerals(nameParts[i]);
+			}
 		}
 
 		return string.Join(" ", nameParts);
 	}
 
-	private static string HandleNamesWithParticles(string basicName)
+	public static string FormatNameWithAnApostrophe(string nameToBeFormatted)
 	{
-		var particleSpecials = SpecialHandlingFactory.GetParticles();
-		foreach (var particleSpecial in particleSpecials.OrderByDescending(x=>x.Length))
-		{
-			if (basicName.Contains(particleSpecial))
-			{
-				basicName = basicName.Replace(particleSpecial, particleSpecial.ToLower());
-			}
-		}
+		if (string.IsNullOrWhiteSpace(nameToBeFormatted))
+			return string.Empty;
 
-		return basicName;
+		// Trim spaces and normalize apostrophe spacing
+		nameToBeFormatted = Regex.Replace(nameToBeFormatted, @"\s*'\s*", "'");
+
+		// Capitalize each word properly
+		TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+		string result = textInfo.ToTitleCase(nameToBeFormatted.ToLower());
+
+		// Ensure the letter after an apostrophe is capitalized (e.g., O'Loaughlin)
+		result = Regex.Replace(result, @"\b(\w)'(\w)", m => $"{m.Groups[1].Value}'{char.ToUpper(m.Groups[2].Value[0])}{m.Groups[2].Value.Substring(1)}");
+
+		return result;
 	}
 
 	private static string HandleRomanNumerals(string nameToBeFormatted)
@@ -49,19 +70,6 @@ public class NameCaseFormatter
 		var upperNameToBeFormatted = nameToBeFormatted.ToUpper();
 
 		if (romanNumerals.Contains(upperNameToBeFormatted))
-		{
-			return upperNameToBeFormatted;
-		}
-
-		return nameToBeFormatted;
-	}
-
-	private static string HandleTwoLetterNames(string nameToBeFormatted)
-	{
-		var twoLetterNames = SpecialHandlingFactory.GetTwoLetterNames();
-		var upperNameToBeFormatted = nameToBeFormatted.ToUpper();
-
-		if (nameToBeFormatted.Length == 2 && twoLetterNames.Contains(upperNameToBeFormatted))
 		{
 			return upperNameToBeFormatted;
 		}

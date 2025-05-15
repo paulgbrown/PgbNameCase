@@ -21,18 +21,4 @@ internal class ParticleFormatter
 
 		return basicName;
 	}
-
-	internal static string FormatParticleNames(string basicName)
-	{
-		var particleNames = SpecialHandlingFactory.GetParticleNames();
-
-		string value = particleNames.TryGetValue(basicName.ToLower(), out string result) ? result : string.Empty;
-
-		if (!string.IsNullOrEmpty(value))
-		{
-			return value;
-		}
-
-		return basicName;
-	}
 }
