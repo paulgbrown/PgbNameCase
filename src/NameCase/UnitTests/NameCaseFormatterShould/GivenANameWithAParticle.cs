@@ -1,6 +1,6 @@
 ﻿using PgbNameCase;
 
-namespace UnitTests;
+namespace UnitTests.NameCaseFormatterShould;
 
 public class GivenANameWithAParticle
 {
