@@ -10,6 +10,7 @@ public class FormattedNameFactory
 			"DeWitt" ,
 			"JD",
 			"JJ",
+			"LaRoche",
 			"Macaraeg",
 			"Maccarone",
 			"Macchione",

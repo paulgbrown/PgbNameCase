@@ -22,6 +22,7 @@ public class GivenABasicName
 	[InlineData("John DeWitt")]
 	[InlineData("John DeRosa")]
 	[InlineData("Wernher von Braun")]
+	[InlineData("John LaRoche")]
 	public void CorrectlyFormatAName(string expectedName)
 	{
 		var nameToBeFormatted = expectedName.ToLower();

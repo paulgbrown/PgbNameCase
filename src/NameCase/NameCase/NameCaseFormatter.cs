@@ -29,21 +29,49 @@ public class NameCaseFormatter
 
 		for (int i = 0; i < nameParts.Length; i++)
 		{
-			string? formattedName = formattedNames.FirstOrDefault(w => w.Equals(nameParts[i], StringComparison.OrdinalIgnoreCase));
-
-			if (formattedName != null)
-			{
-				nameParts[i] = formattedName;
-			}
-			else
-			{
-				nameParts[i] = StartsWithFormatter.Format(nameParts[i]);
-
-     			//nameParts[i] = HandleRomanNumerals(nameParts[i]);
-			}
+			var finalName = HandlePossibleDashName(formattedNames, nameParts[i]);
+			nameParts[i] = finalName;
 		}
 
 		return string.Join(" ", nameParts);
+	}
+
+	private static string HandlePossibleDashName(IReadOnlySet<string> formattedNames, string name)
+	{
+		string nameA = name;
+		string nameB = string.Empty;
+
+		if (name.Contains("-"))
+		{
+			var dashName = name.Split('-');
+			nameA = dashName[0];
+			nameB = dashName[1];
+		}
+
+		nameA = PerformFinalFormatting(formattedNames, nameA);
+
+		if (string.IsNullOrEmpty(nameB))
+		{
+			return nameA;
+		}
+
+		nameB = PerformFinalFormatting(formattedNames, nameB);
+
+		return nameA + "-" + nameB;
+	}
+
+	private static string PerformFinalFormatting(IReadOnlySet<string> formattedNames, string name)
+	{ 
+		string? formattedName = formattedNames.FirstOrDefault(w => w.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+		if (formattedName != null)
+		{
+			return formattedName;
+		}
+		else
+		{
+			return StartsWithFormatter.Format(name);
+		}
 	}
 
 	public static string FormatNameWithAnApostrophe(string nameToBeFormatted)
